@@ -1,0 +1,1 @@
+export { EntityViewComponentsModule } from './entityViewComponents.module';

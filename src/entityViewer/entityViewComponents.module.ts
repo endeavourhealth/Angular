@@ -1,0 +1,35 @@
+import {NgModule} from "@angular/core";
+import {BrowserModule} from "@angular/platform-browser";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {FormsModule} from "@angular/forms";
+import { EntityFilterPipe } from './EntityFilterPipe';
+import { EntityViewer } from './entityViewer';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { OrderPipe } from './orderPipe';
+import { EntityDetailsDialog } from './entityDetails.dialog';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+
+@NgModule({
+    imports:[
+        BrowserModule,
+        FormsModule,
+        NgbModule,
+        NgxPaginationModule
+    ],
+    declarations:[
+        EntityFilterPipe,
+        EntityViewer,
+        OrderPipe,
+        EntityDetailsDialog,
+        PdfViewerComponent
+    ],
+    entryComponents : [
+        EntityDetailsDialog
+    ],
+    exports:[
+        EntityFilterPipe,
+        EntityViewer,
+        OrderPipe
+    ]
+})
+export class EntityViewComponentsModule {}
