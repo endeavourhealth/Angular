@@ -4,6 +4,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 import { EntityFilterPipe } from './EntityFilterPipe';
 import { EntityViewer } from './entityViewer';
+import { EntityViewerServerSidePagination } from './entityViewerServerSidePagination';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderPipe } from './orderPipe';
 import { EntityDetailsDialog } from './entityDetails.dialog';
@@ -19,6 +20,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     declarations:[
         EntityFilterPipe,
         EntityViewer,
+        EntityViewerServerSidePagination,
         OrderPipe,
         EntityDetailsDialog,
         PdfViewerComponent
@@ -29,6 +31,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     exports:[
         EntityFilterPipe,
         EntityViewer,
+        EntityViewerServerSidePagination,
         OrderPipe
     ]
 })
