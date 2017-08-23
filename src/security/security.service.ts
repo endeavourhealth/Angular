@@ -2,6 +2,7 @@ import {Auth} from "./security.auth";
 import {User} from "./models/User";
 import {Injectable} from "@angular/core";
 import {OrganisationGroup} from "./models/OrganisationGroup";
+import {Access} from "./models/Access";
 
 @Injectable()
 export class SecurityService {
@@ -57,6 +58,18 @@ export class SecurityService {
 		this.getAuthz().onAuthLogout = callback;
 	}
 
+	hasPermission(client, role : string) : boolean {
+		if (role == null || role == '')
+			return true;
+
+		let clientAccess : Access = this.getCurrentUser().clientAccess[client];
+
+		if (clientAccess && clientAccess.roles)
+			return clientAccess.roles.indexOf(role) > -1;
+
+		return false;
+	}
+
 	private parseUser() : User {
 		if(this.getAuthz().idTokenParsed && this.getAuthz().realmAccess) {
 			var user = new User;
@@ -65,6 +78,7 @@ export class SecurityService {
 			//user.title = this.getAuthz().idTokenParsed.title;              // TODO: custom attribute??
 			user.uuid = this.getAuthz().idTokenParsed.sub;
 			user.permissions = this.getAuthz().realmAccess.roles;
+			user.clientAccess = this.getAuthz().resourceAccess;
 
 			user.organisationGroups = [];
 

@@ -9,9 +9,15 @@ import {SecurityService} from "../security/security.service";
 		<nav class="sidebar">
 			<ul>
 				<li *ngFor="let menuItem of menuOptions">
-					<div uiSref="{{menuItem.state}}" class="menuItem">
+					<div *ngIf="!hasPermission(menuItem.role)" class="menuItem" style="cursor:not-allowed">
 						<span class="fa fa-2x {{menuItem.icon}}"></span>
-						<span style="cursor:pointer" class="nav-text">
+						<span class="nav-text text-muted">
+						{{menuItem.caption}}
+					</span>
+					</div>
+					<div *ngIf="hasPermission(menuItem.role)" uiSref="{{menuItem.state}}" class="menuItem" style="cursor:pointer">
+						<span class="fa fa-2x {{menuItem.icon}}"></span>
+						<span class="nav-text">
 						{{menuItem.caption}}
 					</span>
 					</div>
@@ -163,8 +169,12 @@ import {SecurityService} from "../security/security.service";
 export class SidebarComponent {
 	menuOptions:MenuOption[];
 
-	constructor(menuService:MenuService, private securityService:SecurityService) {
+	constructor(private menuService:MenuService, private securityService:SecurityService) {
 		this.menuOptions = menuService.getMenuOptions();
+	}
+
+	hasPermission(role : string) : boolean {
+		return this.securityService.hasPermission(this.menuService.getClientId(), role);
 	}
 
 	logout() {
