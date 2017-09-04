@@ -9,6 +9,7 @@ import {SidebarComponent} from "./sidebar.component";
 import {TopnavComponent} from "./topnav.component";
 import {LayoutService} from "./layout.service";
 import {SecurityModule} from "../security/security.module";
+import {StopComponent} from "./stop.component";
 
 @NgModule({
 	imports : [
@@ -23,9 +24,13 @@ import {SecurityModule} from "../security/security.module";
 		ShellComponent,
 		SidebarComponent,
 		TopnavComponent,
+		StopComponent
 	],
 	providers : [
 		LayoutService,
+	],
+	entryComponents : [
+		StopComponent
 	]
 })
 export class LayoutModule {}

@@ -14,6 +14,7 @@ import {Auth} from "../security/security.auth";
 import {ShellComponent} from "../layout/shell.component";
 import {AuthHttpService} from "../security/authHttp.service";
 import {ModuleWithProviders} from "@angular/core";
+import {StopComponent} from "../layout/stop.component";
 // Top level component
 
 // *** USE JQUERY TO BOOTSTRAP APPLICATION ONCE KEYCLOAK IS AUTHORIZED ***
@@ -29,8 +30,12 @@ export class Application {
 				TreeModule,
 				NgbModule.forRoot(),
 				ToastModule.forRoot(<ToastOptions>{animate: 'flyRight', positionClass: 'toast-bottom-right'}),
-				UIRouterModule.forRoot(<RootModule>{ states: states.concat({name: 'app', url: '/app', component: ShellComponent}), useHash: true, otherwise: defaultState }),
-
+				UIRouterModule.forRoot(<RootModule>
+					{ states: states.concat(
+						{name: 'app', url: '/app', component: ShellComponent},
+						{name: 'app.stop', url: '/stop', component: StopComponent}
+						), useHash: true, otherwise: defaultState
+					}),
 				LayoutModule,
 			].concat(modules),
 			providers: [

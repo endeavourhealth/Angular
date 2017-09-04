@@ -59,10 +59,13 @@ export class SecurityService {
 	}
 
 	hasPermission(client, role : string) : boolean {
+		let clientAccess : Access = this.getCurrentUser().clientAccess[client];
+
+		if (!clientAccess)
+			return false;
+
 		if (role == null || role == '')
 			return true;
-
-		let clientAccess : Access = this.getCurrentUser().clientAccess[client];
 
 		if (clientAccess && clientAccess.roles)
 			return clientAccess.roles.indexOf(role) > -1;
