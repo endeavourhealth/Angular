@@ -115,6 +115,13 @@ export class SecurityService {
 
 			return user;
 		}
+
+		if (!this.getAuthz().idTokenParsed)
+			console.error("ID Token not parsed!");
+
+		if (!this.getAuthz().realmAccess)
+			console.error("No realm access!");
+
 		return null;
 	}
 }
