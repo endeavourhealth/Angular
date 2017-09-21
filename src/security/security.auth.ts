@@ -40,7 +40,7 @@ export class Auth {
         this.logoutUrl = authConfig.authServerUrl + '/realms/' + authConfig.realm + '/protocol/openid-connect/logout?redirect_uri=' + this.redirectUrl;
 
         var vm = this;
-        this.authz.init({onLoad: 'login-required'})
+        this.authz.init({onLoad: 'login-required', checkLoginIframe: false})
             .success(function () {
                 if(vm.onAuthSuccess != null) {
                     vm.onAuthSuccess();

@@ -1,6 +1,6 @@
 {
   "name": "eds-common-js",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "devDependencies": {
