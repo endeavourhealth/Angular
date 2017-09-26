@@ -1,7 +1,6 @@
-import Keycloak = require('keycloak');
-
 import {AuthConfig} from "./models/AuthConfig";
 import {WellKnownConfig} from "./models/WellKnownConfig";
+import Keycloak = require("keycloak-js");
 
 
 export class Auth {
@@ -29,10 +28,11 @@ export class Auth {
 
         var authConfig:AuthConfig = WellKnownConfig.factory().getAuthConfig();
 
-        this.authz = new Keycloak({
+        this.authz = Keycloak({
             url: authConfig.authServerUrl,
             realm: authConfig.realm,
-            clientId: authConfig.authClientId
+            clientId: authConfig.authClientId,
+						flow: 'implicit'
         });
 
         this.accountUrl = authConfig.authServerUrl + '/realms/' + authConfig.realm + '/account';
