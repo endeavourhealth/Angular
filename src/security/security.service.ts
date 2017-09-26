@@ -3,10 +3,18 @@ import {User} from "./models/User";
 import {Injectable} from "@angular/core";
 import {OrganisationGroup} from "./models/OrganisationGroup";
 import {Access} from "./models/Access";
+import {MenuService} from "../layout/menu.service";
+import {StateService, Transition, TransitionService} from "ui-router-ng2";
 
 @Injectable()
 export class SecurityService {
 	currentUser:User;
+
+	constructor(private transitionService: TransitionService,
+							private menuService: MenuService,
+							private stateService: StateService
+	) {
+	}
 
 	getAuthz() : any {
 		return Auth.factory().getAuthz();
@@ -124,4 +132,36 @@ export class SecurityService {
 
 		return null;
 	}
+
+	init(): void {
+		let vm = this;
+
+		vm.transitionService.onBefore(
+			{},
+			(transition: Transition) => {
+				let client = vm.menuService.getClientId();
+				let state = transition.to().name;
+				if (state == 'app.stop')
+					return true;
+
+				let menuOptions = vm.menuService.getMenuOptions();
+
+				let requiredRole = null;
+				for (let menuOption of menuOptions) {
+					if (menuOption.state === state)
+						requiredRole = menuOption.role;
+				}
+
+				let canActivate = vm.hasPermission(client, requiredRole);
+
+				if (!canActivate)
+					vm.stateService.go('app.stop');
+
+				return canActivate;
+			}
+		);
+		console.log('Security initialized');
+	}
+
+
 }

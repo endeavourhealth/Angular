@@ -10,6 +10,7 @@ import {TopnavComponent} from "./topnav.component";
 import {LayoutService} from "./layout.service";
 import {SecurityModule} from "../security/security.module";
 import {StopComponent} from "./stop.component";
+import {SecurityService} from "../security/security.service";
 
 @NgModule({
 	imports : [
@@ -33,4 +34,8 @@ import {StopComponent} from "./stop.component";
 		StopComponent
 	]
 })
-export class LayoutModule {}
+export class LayoutModule {
+	constructor(private securityService : SecurityService) {
+		securityService.init();
+	}
+}
