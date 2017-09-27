@@ -18,7 +18,6 @@ export class ShellComponent {
 							private securityService : SecurityService,
 							vRef: ViewContainerRef) {
 		this.toastr.setRootViewContainerRef(vRef);
-		this.securityService.init();
 	}
 
 }
