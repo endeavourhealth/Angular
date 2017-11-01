@@ -86,6 +86,7 @@ export class SecurityService {
 			var user = new User;
 			user.forename = this.getAuthz().idTokenParsed.given_name;
 			user.surname = this.getAuthz().idTokenParsed.family_name;
+			user.organisation = this.getAuthz().idTokenParsed.organisationId;
 			//user.title = this.getAuthz().idTokenParsed.title;              // TODO: custom attribute??
 			user.uuid = this.getAuthz().idTokenParsed.sub;
 			user.permissions = this.getAuthz().realmAccess.roles;
