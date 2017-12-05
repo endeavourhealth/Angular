@@ -111,7 +111,9 @@ export class FolderComponent implements OnInit {
 		// Select previous selection if present
 		var state = this.moduleStateService.getState(this.id);
 		if (state) {
-			this.tree.treeModel.setActiveNode(this.tree.treeModel.getNodeById(state.selectedNode.uuid), true);
+			const selection = this.tree.treeModel.getNodeById(state.selectedNode.uuid);
+			if (selection)
+				this.tree.treeModel.setActiveNode(selection, true);
 		}
 	}
 
