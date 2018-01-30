@@ -57,7 +57,7 @@ export class Application {
 
 			var defer = jQuery.Deferred();
 
-			jQuery.getJSON("/public/wellknown/authconfig", (data: any, textStatus: string, jqXHR: any) => {
+			jQuery.getJSON("public/wellknown/authconfig", (data: any, textStatus: string, jqXHR: any) => {
 				var authConfig = data as AuthConfig;
 				defer.resolve(authConfig);
 			});
