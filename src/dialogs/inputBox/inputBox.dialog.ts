@@ -26,8 +26,8 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn" (click)="cancel()">Cancel</button>
-		<button type="button" class="btn btn-primary" (click)="ok()">Ok</button>
+		<button *ngIf="okText" type="button" class="btn btn-primary" (click)="ok()">{{okText}}</button>
+		<button *ngIf="cancelText" type="button" class="btn" (click)="cancel()">{{cancelText}}</button>
 	</div>
 
 	`
@@ -37,17 +37,23 @@ export class InputBoxDialog {
 	@Input() title : string;
 	@Input() message : string;
 	@Input() resultData : any;
+	@Input() okText: string;
+	@Input() cancelText: string;
 
 	constructor(public activeModal: NgbActiveModal) {}
 
 	public static open(modalService: NgbModal,
 										 title : string,
 										 message : string,
-										 value : string) : NgbModalRef {
+										 value : string,
+										 okText: string,
+										 cancelText: string) : NgbModalRef {
 		const modalRef = modalService.open(InputBoxDialog, { backdrop : "static" });
 		modalRef.componentInstance.title = title;
 		modalRef.componentInstance.message = message;
 		modalRef.componentInstance.resultData = value;
+		modalRef.componentInstance.okText = okText;
+		modalRef.componentInstance.cancelText = cancelText;
 
 		return modalRef;
 	}

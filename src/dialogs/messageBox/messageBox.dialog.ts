@@ -14,8 +14,8 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 		{{message}}
 	</div>
 	<div class="modal-footer">
-		<button *ngIf="cancelText" type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">{{cancelText}}</button>
 		<button *ngIf="okText" type="button" class="btn btn-primary" (click)="activeModal.close()">{{okText}}</button>
+		<button *ngIf="cancelText" type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">{{cancelText}}</button>
 	</div>
 	`
 })

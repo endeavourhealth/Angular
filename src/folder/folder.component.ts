@@ -162,7 +162,7 @@ export class FolderComponent implements OnInit {
 	addChildFolder(node : TreeNode) {
 		var vm = this;
 		var parentNode : FolderNode = node.data;
-		InputBoxDialog.open(vm.$modal, 'New Folder', 'Enter new folder name', 'New folder')
+		InputBoxDialog.open(vm.$modal, 'New Folder', 'Enter new folder name', 'New folder', 'Create folder', 'Cancel')
 			.result.then(function (result: string) {
 			var folder: Folder = {
 				uuid: null,
@@ -190,7 +190,7 @@ export class FolderComponent implements OnInit {
 		var vm = this;
 		var folderNode : FolderNode = node.data;
 		InputBoxDialog.open(vm.$modal,
-			'Rename folder', 'Enter new name for ' + folderNode.folderName, folderNode.folderName)
+			'Rename folder', 'Enter new name for ' + folderNode.folderName, folderNode.folderName, 'Rename folder', 'Cancel')
 			.result.then(function (newName: string) {
 			var oldName = folderNode.folderName;
 			folderNode.folderName = newName;
