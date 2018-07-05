@@ -28,7 +28,7 @@ import {SecurityService} from "../security/security.service";
 					<div (click)="logout()" class="menuItem">
 						<i class="fa fa-2x fa-power-off"></i>
 						<span style="cursor:pointer" class="nav-text">
-						Logout
+						Sign out
 				</span>
 					</div>
 				</li>
