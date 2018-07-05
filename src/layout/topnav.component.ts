@@ -15,7 +15,7 @@ import {SecurityService} from "../security/security.service";
 				</div>
 				<div class="pull-right" style="padding: 10px;color:gray">
 				<span class="dropdown" ngbDropdown>
-					Logged in :
+					Signed in :
 					<button class="dropdown-toggle" ngbDropdownToggle id="optionsMenu">
 						{{currentUser.title}} {{currentUser.forename}} {{currentUser.surname}}
 						<span class="caret"></span>
