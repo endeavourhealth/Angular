@@ -9,12 +9,6 @@ import {SecurityService} from "../security/security.service";
 		<nav class="sidebar">
 			<ul>
 				<li *ngFor="let menuItem of menuOptions">
-					<div *ngIf="!hasPermission(menuItem.role)" class="menuItem" style="cursor:not-allowed">
-						<span class="fa fa-2x {{menuItem.icon}}"></span>
-						<span class="nav-text text-muted">
-						{{menuItem.caption}}
-					</span>
-					</div>
 					<div *ngIf="hasPermission(menuItem.role)" uiSref="{{menuItem.state}}" class="menuItem" style="cursor:pointer">
 						<span class="fa fa-2x {{menuItem.icon}}"></span>
 						<span class="nav-text">
