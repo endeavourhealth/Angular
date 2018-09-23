@@ -5,6 +5,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {LoadingIndicatorComponent} from "./loadingIndicator.component";
 import {Autofocus} from "./focus.directive";
+// import {MultiSelectDropdownComponent} from './multiSelectDropdown.component';
 
 @NgModule({
 	imports:[
@@ -15,12 +16,14 @@ import {Autofocus} from "./focus.directive";
 	declarations:[
 		InlineEditorComponent,
 		LoadingIndicatorComponent,
-		Autofocus
+		Autofocus,
+        // MultiSelectDropdownComponent
 	],
 	exports:[
 		InlineEditorComponent,
 		LoadingIndicatorComponent,
-		Autofocus
+		Autofocus,
+        // MultiSelectDropdownComponent
 	]
 })
 export class ControlsModule {}

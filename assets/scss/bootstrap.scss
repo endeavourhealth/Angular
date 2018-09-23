@@ -1,0 +1,165 @@
+//** Import base variables & functions**//
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+//** Override variables **//
+
+$global_rem_scale: (14rem/16); // Browser default typically `16px` so scale to 14px
+
+$gray-dark:                 #2b2b2b;
+$gray:                      #4a4a4a;
+$gray-light:                #9e9e9e;
+$gray-lighter:              #ededed;
+$gray-lightest:             #f7f7f7;
+
+$primary: $theme-light;
+$info:    $theme-lightest;
+$theme-colors: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+                (
+                        "primary":    $primary,
+                        "secondary":  $secondary,
+                        "success":    $success,
+                        "info":       $info,
+                        "warning":    $warning,
+                        "danger":     $danger,
+                        "light":      $light,
+                        "dark":       $dark
+                ),
+                $theme-colors
+);
+
+$component-active-bg: $theme-light;
+$custom-control-indicator-checked-bg: $theme-light;
+$custom-checkbox-indicator-indeterminate-bg: $theme-light;
+
+$line-height-xs:              1.5;
+
+$border-radius-xs:            .1rem;
+
+$font-size-base: $global-rem-scale;
+$font-size-xs:   ($font-size-base * 0.75);
+
+$table-hover-bg:                $theme-light;
+$link-color:                    $theme-colour;
+
+$input-btn-padding-y-xs:      .15rem;
+$input-btn-padding-x-xs:      .25rem;
+$input-btn-line-height-xs:    $line-height-xs;
+
+$btn-padding-y-xs:            $input-btn-padding-y-xs;
+$btn-padding-x-xs:            $input-btn-padding-x-xs;
+$btn-line-height-xs:          $input-btn-line-height-xs;
+$btn-border-radius-xs:        $border-radius-xs;
+
+$card-cap-bg:              $theme-light;
+$card-bg:                  $gray-lightest;
+
+$tooltip-max-width:           400px;
+$tooltip-font-size:           $font-size-xs;
+
+$modal-lg:                    80%;
+$modal-md:                    50%;
+$modal-sm:                    30%;
+
+//** Bootstrap styling proper **//
+
+@import "~bootstrap/scss/bootstrap";
+
+//** Additional customized styles (i.e. where cannot be done via variables above) **//
+
+.control-label {
+  font-weight: bold;
+}
+
+.tooltip-inner {
+  width: max-content;
+}
+
+.btn-xs {
+  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $btn-line-height-xs, $btn-border-radius-xs);
+}
+
+.card-header {
+  font-size: 18px;
+  color: $white;
+  height: 55px;
+  line-height: 30px;
+  padding: 0.6rem 0.75rem 0.75rem 1.25rem;
+}
+
+.card-body-popover {
+  @extend .card-body;
+  z-index: 10;
+  position: absolute;
+  background: $card-bg;
+  margin-top: 55px;
+
+  // Body needs its own border - cards own border will be hidden
+  width: calc(100% + 2px);
+  border-width: 0px $card-border-width $card-border-width $card-border-width;
+  border-radius: 0px 0px $card-border-radius $card-border-radius;
+  border-style: solid;
+  border-color: $card-border-color;
+  margin-left: -1px;
+}
+
+.table-hover {
+  tbody tr {
+    @include hover {
+      color: $white;
+      a {
+        color: $theme-lightest;
+      }
+    }
+  }
+}
+
+// Drop-downs
+.dropdown-item {
+  width: 100%;
+  padding: 4px 20px 4px 20px;
+  cursor: pointer;
+}
+.dropdown-item:hover {
+  background: $theme-light !important;
+}
+
+//** ngb-datepicker **//
+
+.ngb-dp-header {
+  background-color: $gray-lightest;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  .btn-link {
+    border-color: transparent;
+  }
+}
+
+.ngb-dp-day {
+  .bg-primary {
+    background-color: $theme-colour !important;
+  }
+  .btn-secondary {
+    background-color: white;
+    color: black;
+  }
+}
+
+// FIX FOR NG-BOOTSTRAP v BOOTSTRAP 4.1.3
+
+.fade.in {
+  opacity: 1;
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}

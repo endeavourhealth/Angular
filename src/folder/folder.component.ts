@@ -18,24 +18,23 @@ import {ActionMenuItem} from "./models/ActionMenuItem";
 	selector : 'library-folder',
 	template : `<Tree [nodes]="treeData" [options]="options" (onActivate)="selectNode($event.node.data)" (onInitialized)="treeInitialized()">
 		<template #treeNodeTemplate let-node>
-			<div ngbDropdown class="show-child-on-hover folder-item">
-				<span>{{ node.data.folderName }}</span>
-				<button *ngIf="showMenu" type="button" class="btn btn-xs btn-default child-to-show pull-right" ngbDropdownToggle id="folderMenu">...</button>
-				<ul class="dropdown-menu" aria-labelledby="folderMenu">
-					<li *ngFor="let item of actionMenuItems">
-						<a (click)="actionItem(node.data.uuid, item.type, 'add')">{{item.text}}</a>
-					</li>
-
-					<li role="separator" class="divider"></li>
-					<li><a (click)="addChildFolder(node)">Add child folder</a></li>
-					<li role="separator" class="divider"></li>
-					<li [ngClass]="{'disabled': !node.data.parentFolderUuid}"><a (click)="!node.data.parentFolderUuid || renameFolder(node)">Rename</a></li>
-					<li [ngClass]="{'disabled': !node.data.parentFolderUuid}"><a (click)="!node.data.parentFolderUuid || deleteFolder(node)">Delete</a></li>
-					<li role="separator" class="divider"></li>
-					<li class="disabled"><a href="#">Cut</a></li>
-					<li class="disabled"><a href="#">Copy</a></li>
-					<li><a (click)="pasteItem(node)">Paste</a></li>
-				</ul>
+			<div class="show-child-on-hover folder-item">
+				<div class="dropdown">
+                  {{ node.data.folderName }}
+					<button *ngIf="showMenu" type="button" class="btn btn-xs btn-default child-to-show pull-right" data-toggle="dropdown" id="folderMenu">...</button>
+					<div class="dropdown-menu" aria-labelledby="folderMenu">
+						<div *ngFor="let item of actionMenuItems" class="dropdown-item" (click)="actionItem(node.data.uuid, item.type, 'add')">{{item.text}}</div>
+						<div class="dropdown-item divider" role="separator"></div>
+						<div class="dropdown-item"><a (click)="addChildFolder(node)">Add child folder</a></div>
+						<div class="dropdown-item divider" role="separator"></div>
+						<div class="dropdown-item" [ngClass]="{'disabled': !node.data.parentFolderUuid}"><a (click)="!node.data.parentFolderUuid || renameFolder(node)">Rename</a></div>
+						<div class="dropdown-item" [ngClass]="{'disabled': !node.data.parentFolderUuid}"><a (click)="!node.data.parentFolderUuid || deleteFolder(node)">Delete</a></div>
+						<div class="dropdown-item divider" role="separator"></div>
+						<div class="dropdown-item disabled"><a href="#">Cut</a></div>
+						<div class="dropdown-item disabled"><a href="#">Copy</a></div>
+						<div class="dropdown-item"><a (click)="pasteItem(node)">Paste</a></div>
+					</div>
+				</div>
 			</div>
 		</template>
 	</Tree>

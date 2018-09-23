@@ -5,8 +5,8 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 @Component({
 	selector: 'ngbd-modal-content',
 	template: `<div class="modal-header">
+      <h4 class="modal-title">{{ title }}</h4>
 		<button type="button" class="close" (click)="cancel()" aria-hidden="true">&times;</button>
-		<h4 class="modal-title">{{ title }}</h4>
 	</div>
 	<div class="modal-body">
 		<form endUserRole="form" class="container-fluid">
@@ -26,8 +26,8 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button *ngIf="okText" type="button" class="btn btn-primary" (click)="ok()">{{okText}}</button>
-		<button *ngIf="cancelText" type="button" class="btn" (click)="cancel()">{{cancelText}}</button>
+		<button *ngIf="okText" type="button" class="btn btn-success" (click)="ok()">{{okText}}</button>
+		<button *ngIf="cancelText" type="button" class="btn btn-danger" (click)="cancel()">{{cancelText}}</button>
 	</div>
 
 	`

@@ -6,39 +6,35 @@ import {SecurityService} from "../security/security.service";
 
 @Component({
 	selector: 'topnav-component',
-	template: `<header class="clearfix">
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header" style="width: 50%">
-					<img class="logo-image">
-					<span class="title-text">{{getApplicationTitle()}}</span>
-				</div>
-				<div class="pull-right" style="padding: 10px;color:gray">
-				<span class="dropdown" ngbDropdown>
-					Signed in :
-					<button class="dropdown-toggle" ngbDropdownToggle id="optionsMenu">
-						{{currentUser.title}} {{currentUser.forename}} {{currentUser.surname}}
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="optionsMenu">
-						<li style="cursor:pointer; padding-left: 5px; padding-right: 5px; padding-bottom: 5px" class="nav-text">
-							<div (click)="navigateUserAccount()" class="menuItem" >
-							<i class="fa fa-user-circle-o fa-2x"></i>
-								User account
+	template: `
+		<div class="title-bar">
+      <span class="navbar-header" style="width: 50%">
+        <img class="logo-image">
+        <span class="title-text">{{getApplicationTitle()}}</span>
+      </span>
+			<div class="pull-right" style="padding: 10px;color:gray">
+
+				<div class="d-inline-block">
+					<div class="dropdown">
+						Signed in :
+						<button class="btn dropdown-toggle btn-info btn-sm" id="roleDropdown" data-toggle="dropdown">{{currentUser.title}}
+							{{currentUser.forename}} {{currentUser.surname}}
+						</button>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="roleDropdown">
+							<div class="dropdown-item">
+								<div class="pull-right">
+									<button type="button" class="btn btn-success" (click)="navigateUserAccount()">User
+										account
+									</button>
+									<button type="button" class="btn btn-danger" (click)="logout()">Sign out</button>
+								</div>
 							</div>
-						</li>
-						<li style="cursor:pointer; padding-left: 5px; padding-right: 5px;" class="nav-text">
-							<div (click)="logout()" class="menuItem">
-							<i class="fa fa-power-off fa-2x"></i>
-								Sign out
-							</div>
-						</li>
-					</ul>
-				</span>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</header>
 	`
 })
 export class TopnavComponent {

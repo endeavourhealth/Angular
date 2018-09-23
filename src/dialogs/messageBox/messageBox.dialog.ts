@@ -5,17 +5,17 @@ import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 @Component({
 	selector: 'ngbd-modal-content',
 	template: `<div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
 		<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<h4 class="modal-title">{{title}}</h4>
 	</div>
 	<div class="modal-body">
 		{{message}}
 	</div>
 	<div class="modal-footer">
-		<button *ngIf="okText" type="button" class="btn btn-primary" (click)="activeModal.close()">{{okText}}</button>
-		<button *ngIf="cancelText" type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">{{cancelText}}</button>
+		<button *ngIf="okText" type="button" class="btn btn-success" (click)="activeModal.close()">{{okText}}</button>
+		<button *ngIf="cancelText" type="button" class="btn btn-danger" (click)="activeModal.dismiss()">{{cancelText}}</button>
 	</div>
 	`
 })
